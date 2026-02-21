@@ -21,13 +21,17 @@ def logistic_regression(theta, X, y):
     f = 0.0
     g = np.zeros_like(theta)
 
-    #
-    # TODO: Compute the objective function by looping over the dataset and summing
-    #       up the objective values for each example. Store the result in 'f'.
-    #
-    # TODO: Compute the gradient of the objective by looping over the dataset and summing
-    #       up the gradients (df/dtheta) for each example. Store the result in 'g'.
-    #
-    ### YOUR CODE HERE ###
+    for j in range(m): # loop over m values
+        xj = X[:, j]
+        yj = y[j]
+        z = np.dot(theta, xj)    # scalar dot product
+        h = sigmoid(z)
+        
+        # objective function 
+        f += -yj * np.log(h) - (1 - yj) * np.log(1 - h)
+        g += (h - yj) * xj
 
+    f /= m
+    g /= m
+    
     return f, g
