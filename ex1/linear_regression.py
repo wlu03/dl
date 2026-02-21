@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def linear_regression(theta, X, y):
     """
     Arguments:
@@ -11,22 +10,30 @@ def linear_regression(theta, X, y):
 
     Returns:
         f - The objective function value.
+            m is the number of val
         g - The gradient of the objective with respect to theta.
     """
-    m = X.shape[1]
-    n = X.shape[0]
+    
+    # theta = (n,) : vector of n features
+        # one weight per feature
+        # for example, if theta = [w1, w2], then theta.shape = (2,)
+    # X shape (n, m)
+        # n features, m training examples
+    # y has a shape (m,) for the correct output of m examples
+    
+    m = X.shape[1] # number of example
+    n = X.shape[0] # number of features
 
     f = 0.0
     g = np.zeros_like(theta)
 
-    #
-    # TODO: Compute the linear regression objective by looping over the examples in X.
-    #       Store the objective function value in 'f'.
-    #
-    # TODO: Compute the gradient of the objective with respect to theta by looping over
-    #       the examples in X and adding up the gradient for each example. Store the
-    #       computed gradient in 'g'.
-
-    ### YOUR CODE HERE ###
+    # compute object function and gradient
+    
+    for j in range(m): # loop over m examples
+        x_j = X[:, j] # vector of j-th object
+        h = theta @ x_j # prediction (scalar)
+        error = h - y[j] # residual
+        f += 0.5 * error ** 2 # squared error
+        g += error * x_j
 
     return f, g

@@ -21,8 +21,8 @@ from linear_regression import linear_regression
 from linear_regression_vec import linear_regression_vec
 
 
-# Load housing data from file.
-data = np.loadtxt('housing.data')
+# Load housing data from CSV file.
+data = np.loadtxt('housing.csv', delimiter=',', skiprows=1)
 data = data.T  # put examples in columns
 
 # Include a row of 1s as an additional intercept feature.
